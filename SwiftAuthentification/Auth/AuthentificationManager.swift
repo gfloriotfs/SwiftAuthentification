@@ -37,4 +37,20 @@ final class AuthentificationManager{
         }
         return AuthDataResultModel(user:user)
     }
+    //connecté un usager déjà enregistré
+    func signInUser(email: String, password: String) async throws->AuthDataResultModel
+    {
+        let authDataResult=try await Auth.auth().signIn(withEmail: email, password: password)
+        return AuthDataResultModel(user: authDataResult.user)
+    }
+    //Quitter
+    func signOut() throws
+    {
+        try Auth.auth().signOut()
+    }
+    //reset mot de passe
+    func resetPassword(email: String) async throws
+    {
+    try await Auth.auth().sendPasswordReset(withEmail: email)
+    }
 }

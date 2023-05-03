@@ -14,7 +14,7 @@ struct RootView: View {
         {
             NavigationStack
             {
-                Text("Paramètres")
+                SettingsView(showingSignInView: $showingSignInView)
             }
         }
         .onAppear()
@@ -24,12 +24,11 @@ struct RootView: View {
         }
         .fullScreenCover(isPresented: $showingSignInView)
         {
-            NavigationStack{
-                AuthentificationView()
+            NavigationStack
+            AuthentificationView(showSignInView: $showingSignInView)
             }
         }
     }
-}
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
